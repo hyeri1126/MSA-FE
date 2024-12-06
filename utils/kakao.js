@@ -6,7 +6,7 @@ import { useRegistration } from "@/contexts/RegistrationContext";
 import { NextResponse } from "next/server";
 import BaseButton from "@/components/button/base-button";
 
-export const KakaoMap = ({latAndLng}) => {
+export const KakaoMap = ({latAndLng,isChange = false }) => {
     const {setFormData} =  useRegistration();
     const mapContainer = useRef(null);
     const [currentLocation, setCurrentLocation] = useState(null);
@@ -55,9 +55,12 @@ export const KakaoMap = ({latAndLng}) => {
     
             // 마커 생성
             const markerPosition = map.getCenter();
-            const marker = new window.kakao.maps.Marker({
-                position: markerPosition
-            });
+
+            const markerOptions = isChange
+                                ? { position: markerPosition }
+                                : {};
+                                
+            const marker = new window.kakao.maps.Marker(markerOptions);
             marker.setMap(map);
             
             console.log('Map and marker created successfully');
@@ -119,13 +122,13 @@ export const KakaoMap = ({latAndLng}) => {
     return (
         <>
             <Script
-               strategy="lazyOnload"
-               src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`}
-               onLoad={() => {
-                   window.kakao?.maps?.load(() => {
-                       initializeMap();
-                   });
-               }}
+                strategy="lazyOnload"
+                src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`}
+                onLoad={() => {
+                    window.kakao?.maps?.load(() => {
+                        initializeMap();
+                    });
+                }}
            />
             <div>
                 <div ref={mapContainer} style={{ width: '500px', height: '400px' }} />
