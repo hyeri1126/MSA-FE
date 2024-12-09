@@ -55,7 +55,7 @@ export default function OnboardingPage() {
             </div>
             <div className={styles.heroImage}>
               <Image
-                  src="/images/dashboard.png"
+                  src="/images/onboarding_img.png"
                   alt="대시보드 미리보기"
                   width={550}
                   height={400}

@@ -39,6 +39,14 @@ export default function Workplace() {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
+
+    const formatWooriAccountNumber = (accountNumber) => {
+        // 우리은행 계좌 번호 형식 적용
+        // 예: 10028503916001 -> 1002-850-391601
+        const formattedNumber = accountNumber.replace(/(\d{4})(\d{3})(\d{6})/, '$1-$2-$3');
+        return formattedNumber;
+      };
+
     const fetchStores = async () => {
     
         setLoading(true);
@@ -47,14 +55,19 @@ export default function Workplace() {
             const response = await nextClient.get('/mypage/store/storelist');
             console.log("매출/재출 데이터",response.data) // businessNumber 있음 
             setOriginalStore(response.data);
-            const transformedStores = response.data.map(store => ({
-                storeId: store.id,
-                storeName: store.storeName,
-                businessNumber: store.businessNumber,
-                accountNumber: store.accountNumber,
-                bankCode: store.bankCode,
-                location: store.location,
-            }));
+            const transformedStores = response.data.map(store => {
+                const formattedAccountNumber = store.bankCode === '020'
+                  ? formatWooriAccountNumber(store.accountNumber)
+                  : store.accountNumber;
+                return {
+                  storeId: store.id,
+                  storeName: store.storeName,
+                  businessNumber: store.businessNumber,
+                  accountNumber: formattedAccountNumber,
+                  bankCode: store.bankCode,
+                  location: store.location,
+                };
+              });
             console.log("transformedStores:", transformedStores); // businessNumber undefined 
             setStores(transformedStores); 
         } catch (error) {
