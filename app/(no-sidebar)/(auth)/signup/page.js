@@ -82,7 +82,44 @@ export default function Signup() {
       (data.isEmailConfirmed ? "" : "이메일 인증을 완료해주세요."),
     password: commonValidateRules.password,
     confirmPassword: commonValidateRules.confirmPassword,
+    termsAccept: (value) => !value ? "서비스 이용약관에 동의해주세요." : "",
+    privacyAccept: (value) => !value ? "개인정보 처리방침에 동의해주세요." : "",
   };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: checked
+    }));
+
+    // Clear error when checkbox is checked
+    if (checked) {
+      setFormErrors(prev => {
+        const { [name]: _, ...rest } = prev;
+        return rest;
+      });
+    }
+  };
+
+  const handleAllCheck = (e) => {
+    const { checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      termsAccept: checked,
+      privacyAccept: checked,
+      marketingAccept: checked
+    }));
+
+    // Clear errors when all checked
+    if (checked) {
+      setFormErrors(prev => {
+        const { termsAccept, privacyAccept, ...rest } = prev;
+        return rest;
+      });
+    }
+  };
+
 
   // 유효성 검사 수행
   const validateField = (name, value) => {
@@ -164,6 +201,8 @@ export default function Signup() {
         phoneNumber: formData.phoneNumber,
         address: fullAddress,
         termsAccept: false,
+        privacyAccept: formData.privacyAccept,
+        marketingAccept: formData.marketingAccept
       };
 
       setLoading(true);
@@ -190,7 +229,7 @@ export default function Signup() {
     <div className={styles.container}>
       <div className={styles.formWrapper}>
         {loading && <Loading />}
-        <h2 className={styles.title}></h2>
+        <h2 className={styles.title}>회원가입</h2>
         <form className={styles.form}>
           <div className={styles.formGrid}>
             {/* 왼쪽 섹션 */}
@@ -232,19 +271,19 @@ export default function Signup() {
                   readOnly
                   className={styles.readOnlyInput}
                 />
-                {/* <button
+                <button
                   type="button"
                   className={styles.addressButton}
                   onClick={() => setIsModalOpen(true)}
                 >
                   우편번호찾기
-                </button> */}
-                <BaseButton
+                </button>
+                {/* <BaseButton
                   text={"우편번호 찾기"}
                   type="button"
                   className={styles.addressButton}
                   onClick={() => setIsModalOpen(true)}
-                ></BaseButton>
+                ></BaseButton> */}
                 {formErrors.postcode && (
                   <p className={styles.error}>{formErrors.postcode}</p>
                 )}
@@ -302,21 +341,21 @@ export default function Signup() {
                   onChange={handleChange}
                   disabled={isEmailConfirmDisabled}
                 />
-                {/* <button
+                <button
                   type="button"
                   className={styles.verifyButton}
                   onClick={emailSendHandler}
                   disabled={isEmailConfirmDisabled}
                 >
                   인증번호 발송
-                </button> */}
-                <BaseButton
+                </button>
+                {/* <BaseButton
                   text={"인증번호 발송"}
                   type="button"
                   className={styles.verifyButton}
                   onClick={emailSendHandler}
                   disabled={isEmailConfirmDisabled}
-                ></BaseButton>
+                ></BaseButton> */}
                 {formErrors.email && (
                   <p className={styles.error}>{formErrors.email}</p>
                 )}
@@ -337,22 +376,22 @@ export default function Signup() {
                   onChange={handleChange}
                   disabled={isEmailConfirmDisabled}
                 />
-                {/* <button
+                <button
                   type="button"
                   className={styles.verifyButton}
                   disabled={isEmailConfirmDisabled}
                   onClick={handleEmailConfirm}
                 >
                   {isEmailConfirmDisabled ? "확인 완료" : "확인"}
-                </button> */}
+                </button>
 
-                <BaseButton
+                {/* <BaseButton
                   text={isEmailConfirmDisabled ? "확인 완료" : "확인"}
                   type="button"
                   className={styles.verifyButton}
                   disabled={isEmailConfirmDisabled}
                   onClick={handleEmailConfirm}
-                />
+                /> */}
 
                 {formErrors.emailConfirm && (
                   <p className={styles.error}>{formErrors.emailConfirm}</p>
@@ -387,30 +426,88 @@ export default function Signup() {
             </div>
           </div>
 
+          
+
           <div className={styles.bottomSection}>
-            <div className={styles.accountCheck}>
-              <span>우리은행 사업자 계좌가 없으신가요?</span>
-              <button
-                type="button"
-                className={styles.linkButton}
-                onClick={() =>
-                  window.open(
-                    "https://nbi.wooribank.com/nbi/woori?withyou=BISVC0131",
-                    "_blank"
-                  )
-                }
-              >
-                우리계좌개설하러가기
-              </button>
+
+            <div className={styles.termsSection}>
+              <div className={styles.termsHeader}>
+                <input
+                  type="checkbox"
+                  id="allCheck"
+                  onChange={handleAllCheck}
+                  checked={
+                    formData.termsAccept &&
+                    formData.privacyAccept &&
+                    formData.marketingAccept
+                  }
+                />
+                <label htmlFor="allCheck">전체 약관에 동의합니다</label>
+              </div>
+              
+              <div className={styles.termsItem}>
+                <input
+                  type="checkbox"
+                  id="termsAccept"
+                  name="termsAccept"
+                  checked={formData.termsAccept}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="termsAccept" style={{marginRight:"15px"}}>서비스 이용약관 동의 (필수)</label>
+                {formErrors.termsAccept && (
+                  <p className={styles.error}>{formErrors.termsAccept}</p>
+                )}
+                <input
+                  type="checkbox"
+                  id="privacyAccept"
+                  name="privacyAccept"
+                  checked={formData.privacyAccept}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="privacyAccept">개인정보 처리방침 동의 (필수)</label>
+                {formErrors.privacyAccept && (
+                  <p className={styles.error}>{formErrors.privacyAccept}</p>
+                )}
+              </div>
+              
+              <div className={styles.termsItem}>
+                <input
+                  type="checkbox"
+                  id="marketingAccept"
+                  name="marketingAccept"
+                  checked={formData.marketingAccept}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="marketingAccept">마케팅 정보 수신 동의 (선택)</label>
+              </div>
             </div>
 
-            <button
-              type="submit"
-              onClick={submitHandler}
-              className={styles.submitButton}
-            >
-              회원 가입
-            </button>
+            <div className={styles.submitBox}>
+              <div className={styles.accountCheck}>
+                <span>우리은행 사업자 계좌가 없으신가요?</span>
+                <button
+                  type="button"
+                  className={styles.linkButton}
+                  onClick={() =>
+                    window.open(
+                      "https://nbi.wooribank.com/nbi/woori?withyou=BISVC0131",
+                      "_blank"
+                    )
+                  }
+                >
+                  우리계좌개설하러가기
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                onClick={submitHandler}
+                className={styles.submitButton}
+              >
+                회원 가입
+              </button>
+            </div>
+         
           </div>
         </form>
       </div>

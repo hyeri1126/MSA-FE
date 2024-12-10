@@ -13,8 +13,7 @@
 }
 
 .content {
-  min-height: 400px;  /* 컨텐츠의 최소 높이 설정 */
-  padding: 2rem 0;
+  min-height: 300px;  /* 컨텐츠의 최소 높이 설정 */
 }
 
 /* StepProgress */
@@ -87,6 +86,7 @@
   max-width: 32rem;
   margin: 0 auto;
   padding: 1.5rem;
+  
 }
 
 
@@ -270,6 +270,66 @@
 .verificationButton:disabled {
   background-color: var(--main-orange);
   cursor: not-allowed;
+}
+
+/* 안내문 추가 */
+.description {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 0.5rem;
+  border-left: 4px solid #FFD8A9 ;
+}
+
+.description p {
+  color: #6b7280; /* 더 부드러운 회색 */
+  margin: 0.25rem 0;
+  font-size: 0.875rem; /* 글자 크기 축소 */
+  line-height: 1.4;
+}
+
+.important {
+  color: #ef4444 !important;
+  font-weight: 500;
+}
+
+.agreementSection {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.agreementSection h3 {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.agreementItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.agreementItem label {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.viewTerms {
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: none;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.viewTerms:hover {
+  background-color: #f3f4f6;
 }
 
 @keyframes spin {

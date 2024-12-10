@@ -16,6 +16,7 @@
   --sidebar-color: #FFFAF5;
   --sidebar-width: 16%;
   ---disabled-gray : #bfbfbf;
+  --footer-height:70px;
 }
 
 @font-face {
@@ -32,6 +33,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-family: sans-serif;
+  /* user-select: none; */
 }
 
 button{

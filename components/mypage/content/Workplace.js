@@ -12,6 +12,7 @@ import FirstStoreRegistration from '@/components/modal/workplace-registration.js
 import AdditionalStoreRegistration from '@/components/modal/workplace-registration.js/AdditionalStoreRegistraion';
 import DeleteModal from '@/components/modal/delete-commute-modal/delete-commute-modal';
 import EditStoreRegistration from '@/components/modal/workplace-registration.js/EditStoreRegistration';
+import { formatBusinessNumber, formatWooriAccountNumber } from '@/utils/formatting';
 
 const tableName = "보유 사업장";
 const tableHeaders = {
@@ -40,13 +41,6 @@ export default function Workplace() {
     const [isLoading, setIsLoading] = useState(true);
 
 
-    const formatWooriAccountNumber = (accountNumber) => {
-        // 우리은행 계좌 번호 형식 적용
-        // 예: 10028503916001 -> 1002-850-391601
-        const formattedNumber = accountNumber.replace(/(\d{4})(\d{3})(\d{6})/, '$1-$2-$3');
-        return formattedNumber;
-      };
-
     const fetchStores = async () => {
     
         setIsLoading(true);
@@ -56,13 +50,17 @@ export default function Workplace() {
             console.log("매출/재출 데이터",response.data) // businessNumber 있음 
             setOriginalStore(response.data);
             const transformedStores = response.data.map(store => {
+                // 우리은행 계좌번호 포맷팅
                 const formattedAccountNumber = store.bankCode === '020'
                   ? formatWooriAccountNumber(store.accountNumber)
                   : store.accountNumber;
+
+                // 사업자 계좌번호 포맷팅
+                const formattedBusinessNumber = formatBusinessNumber(store.businessNumber);
                 return {
                   storeId: store.id,
                   storeName: store.storeName,
-                  businessNumber: store.businessNumber,
+                  businessNumber: formattedBusinessNumber,
                   accountNumber: formattedAccountNumber,
                   bankCode: store.bankCode,
                   location: store.location,
@@ -238,6 +236,7 @@ export default function Workplace() {
                 isOpen={isFirstRegistrationModalOpen}
                 showButtons={false}
                 onClose={()=>setFirstRegistrationModalOpen(false)} 
+                modalHeaderStyle={{ marginBottom: '20px' }}
             >
                 <FirstStoreRegistration 
                     onClose={()=>setFirstRegistrationModalOpen(false)} 
@@ -251,6 +250,7 @@ export default function Workplace() {
                 isOpen={isRegistrationModalOpen}
                 onClose={()=>setRegistrationModalOpen(false)}
                 showButtons={false}
+                modalHeaderStyle={{ marginBottom: '20px' }}
             >
                 <AdditionalStoreRegistration 
                     onClose={()=>setFirstRegistrationModalOpen(false)} 
@@ -264,6 +264,7 @@ export default function Workplace() {
                     isOpen={isEditModalOpen}
                     showButtons={false}
                     onClose={() => setEditModalOpen(false)}
+                    modalHeaderStyle={{ marginBottom: '20px' }}
             >
                 <EditStoreRegistration
                     onClose={()=>setEditModalOpen(false)} 

@@ -13,6 +13,10 @@ export default function StoreInfoStep(){
     return(
         <div className={styles.formContainer}>
             <h2 className={styles.formTitle}>사업자정보 입력</h2>
+            <div className={styles.description}>
+              <p>• 실제 사업자등록증의 정보와 동일하게 입력해주세요</p>
+              <p>• 입력하신 정보는 국세청 정보와 대조됩니다</p>
+            </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>사업장 상호명</label>
               <input

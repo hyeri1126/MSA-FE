@@ -29,6 +29,10 @@ export default function VerificationStep(){
     return(
         <div className={styles.formContainer}>
             <h2 className={styles.formTitle}>본인 인증</h2>
+            <div className={styles.description}>
+                <p>사업자 본인 확인을 위한 인증 절차입니다.</p>
+                <p>입력하신 이메일로 인증번호가 발송됩니다.</p>
+            </div>
             <div className={styles.verificationBox}>
            
                 <>

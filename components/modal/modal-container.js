@@ -12,7 +12,8 @@ export default function ModalContainer({
     onConfirm, 
     children, 
     confirmText = "확인",  
-    showButtons = true 
+    showButtons = true,
+    modalHeaderStyle = {} 
   }) {
     const [mounted, setMounted] = useState(false); 
 
@@ -72,7 +73,7 @@ export default function ModalContainer({
                     <X />
                 </button>
 
-                <h2 className={styles.modalHeader}>{title}</h2>
+                <h2 className={styles.modalHeader} style={modalHeaderStyle}>{title}</h2>
                 
                 <div className={styles.modalBody}>
                 {children}
