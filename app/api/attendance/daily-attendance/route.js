@@ -40,6 +40,8 @@ export async function GET(request) {
 
     return NextResponse.json(formattedResponse);
   } catch (error) {
+
+    console.log(error.response);
     console.error("Error in daily attendance API:", {
       message: error.message,
       response: error.response?.data,

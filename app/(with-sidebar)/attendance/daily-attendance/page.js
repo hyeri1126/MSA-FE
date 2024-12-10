@@ -125,6 +125,11 @@ export default function Form() {
     setFormData(updatedData);
   };
   const fetchDailyAttendance = async () => {
+    if (!storeId) {
+      console.log("storeId가 없습니다. 데이터를 불러오지 않습니다.");
+      return;
+    }
+
     try {
       const response = await nextClient.get(`/attendance/daily-attendance`, {
         params: {
@@ -162,6 +167,10 @@ export default function Form() {
   };
 
   const handleSubmit = async () => {
+    if (!storeId) {
+      setFormError("사업장이 선택되지 않았습니다.");
+      return;
+    }
     console.log("제출 전 폼 데이터:", formData); // 데이터 확인용 로그
 
     if (!validateForm(formData)) {
@@ -193,7 +202,7 @@ export default function Form() {
       setIsModalOpen(false);
       setFormData({});
       setFormError("");
-      window.location.reload();
+      await fetchDailyAttendance(); // storeId를 전달하여 재요청
     } catch (error) {
       console.error(
         "서버 요청 중 오류 발생:",
@@ -296,10 +305,10 @@ export default function Form() {
   };
 
   useEffect(() => {
-    if (selectedDate) {
+    if (storeId && selectedDate) {
       fetchDailyAttendance();
     }
-  }, [selectedDate]);
+  }, [storeId, selectedDate]);
 
   return (
     <>
@@ -339,7 +348,7 @@ export default function Form() {
             setFormData({});
           }}
           title="출퇴근 기록 추가하기"
-          onConfirm={handleSubmit}
+          onConfirm={() => handleSubmit(storeId)}
         >
           <AttendanceModalBody
             mode="create"
