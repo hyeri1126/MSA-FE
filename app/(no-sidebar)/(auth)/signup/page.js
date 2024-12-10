@@ -8,6 +8,11 @@ import { useRouter } from "next/navigation";
 import { validateForm, commonValidateRules } from "@/utils/validation";
 import Loading from "@/components/loading/Loading";
 import BaseButton from "@/components/button/base-button";
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { format } from 'date-fns';
+import ko from 'date-fns/locale/ko';
+import "./date.css"
 
 export default function Signup() {
   const router = useRouter();
@@ -34,16 +39,35 @@ export default function Signup() {
   const [emailConfirmNumber, setEmailConfirmNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
 
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+
+  //   setFormErrors((prevErrors) => {
+  //     const error = validateField(name, value);
+  //     if (error) {
+  //       return { ...prevErrors, [name]: error };
+  //     } else {
+  //       const { [name]: _, ...rest } = prevErrors;
+  //       return rest;
+  //     }
+  //   });
+  // };
+  const handleChange = (eOrName, value) => {
+    const name = typeof eOrName === "string" ? eOrName : eOrName.target.name;
+    const newValue = typeof eOrName === "string" ? value : eOrName.target.value;
+  
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: newValue,
     }));
-
+  
     setFormErrors((prevErrors) => {
-      const error = validateField(name, value);
+      const error = validateField(name, newValue);
       if (error) {
         return { ...prevErrors, [name]: error };
       } else {
@@ -52,6 +76,7 @@ export default function Signup() {
       }
     });
   };
+  
 
   const handlePostcodeSelect = (selectedPostcode, selectedAddress) => {
     setFormData((prevData) => ({
@@ -71,7 +96,7 @@ export default function Signup() {
   // 유효성 검사 함수
   const validateRules = {
     name: commonValidateRules.required,
-    birthDate: commonValidateRules.birthDate,
+    birthDate: () => "",
     postcode: commonValidateRules.required,
     basicAddress: commonValidateRules.required,
     detailAddress: commonValidateRules.required,
@@ -123,7 +148,13 @@ export default function Signup() {
 
   // 유효성 검사 수행
   const validateField = (name, value) => {
-    return validateRules[name](value, formData);
+    const rule = validateRules[name];
+    if (typeof rule === "function") {
+      return rule(value, formData);
+    } else {
+      // 규칙이 없으면 빈 문자열 반환 (에러 없음)
+      return "";
+    }
   };
 
   const emailSendHandler = async (e) => {
@@ -248,7 +279,22 @@ export default function Signup() {
               </div>
 
               <div className={styles.inputGroup}>
-                <input
+                <ReactDatePicker
+                    locale={ko}
+                    name="birthDate" 
+                    selected={formData.birthDate}
+                    onChange={(date) => handleChange('birthDate', date)}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="날짜를 선택하세요"
+                    showYearDropdown
+                    showMonthDropdown
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={100} 
+                    minDate={new Date(1930, 0, 1)} // 시작 연도 설정
+                    maxDate={new Date()} // 현재 날짜까지 설정
+                />
+
+                {/* <input
                   type="text"
                   name="birthDate"
                   placeholder="생년월일"
@@ -256,10 +302,10 @@ export default function Signup() {
                   onChange={handleChange}
                   onFocus={(e) => (e.target.type = "date")}
                   onBlur={(e) => (e.target.type = "text")}
-                />
-                {formErrors.birthDate && (
+                /> */}
+                {/* {formErrors.birthDate && (
                   <p className={styles.error}>{formErrors.birthDate}</p>
-                )}
+                )} */}
               </div>
 
               <div className={styles.inputGroup}>
