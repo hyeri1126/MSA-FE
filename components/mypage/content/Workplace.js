@@ -37,7 +37,7 @@ export default function Workplace() {
     const [error, setError] = useState('');
     const [deleteStoreId, setdeleteStoreId] = useState(null);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const formatWooriAccountNumber = (accountNumber) => {
@@ -49,7 +49,7 @@ export default function Workplace() {
 
     const fetchStores = async () => {
     
-        setLoading(true);
+        setIsLoading(true);
         setError(null);
         try {
             const response = await nextClient.get('/mypage/store/storelist');
@@ -74,8 +74,8 @@ export default function Workplace() {
             console.error("가게 데이터를 가져오는데 실패했습니다.");
             setError(error.response?.data?.error || error.message);
         } finally {
-            setLoading(false);
-        }
+            setIsLoading(false); // 로딩 종료
+          }
     };
 
 
@@ -165,8 +165,14 @@ export default function Workplace() {
 
     return (
         <div className={classes.container}>
-
-            {stores.length > 0 ? (
+            {isLoading ? (
+                <div>
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px", marginTop:"15px" }} />
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                </div>
+            ) : stores.length > 0 ? (
                 <>
                     <DefaultTable
                         tableName={tableName}
