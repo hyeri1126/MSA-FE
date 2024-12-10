@@ -125,6 +125,7 @@ export default function Form() {
     setFormData(updatedData);
   };
   const fetchDailyAttendance = async () => {
+    setIsLoading(true);
     if (!storeId) {
       console.log("storeId가 없습니다. 데이터를 불러오지 않습니다.");
       return;
@@ -163,6 +164,8 @@ export default function Form() {
       setAttendanceList(formattedList);
     } catch (error) {
       console.error("Error fetching daily attendance:", error);
+    } finally {
+      setIsLoading(false); // 로딩 종료
     }
   };
 
@@ -178,7 +181,6 @@ export default function Form() {
       return;
     }
 
-    setIsLoading(true);
     const formattedStartTime = `${formData.date}T${formData.startTime}:00`;
     const formattedEndTime = formData.endTime
       ? `${formData.date}T${formData.endTime}:00`
@@ -209,9 +211,7 @@ export default function Form() {
         error.response?.data || error.message
       );
       setFormError("데이터 저장 중 오류가 발생했습니다");
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   const handleEditClick = (item) => {
@@ -253,7 +253,6 @@ export default function Form() {
       editModalData.commuteId
     );
 
-    setIsLoading(true);
     try {
       const response = await nextClient.put(
         `/attendance/commute?commuteid=${editModalData.commuteId}`,
@@ -274,9 +273,7 @@ export default function Form() {
         error.response?.data || error.message
       );
       setFormError("수정 중 오류가 발생했습니다");
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   const handleDelete = (commuteId) => {
@@ -285,7 +282,6 @@ export default function Form() {
   };
 
   const handleDeleteConfirm = async () => {
-    setIsLoading(true);
     try {
       const response = await nextClient.delete(
         `/attendance/daily-attendance?commuteid=${deleteCommuteId}`
@@ -299,9 +295,7 @@ export default function Form() {
       setDeleteModalOpen(false);
     } catch (error) {
       console.error("Error deleting commute:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   useEffect(() => {
