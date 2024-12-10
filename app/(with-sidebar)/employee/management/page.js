@@ -160,7 +160,15 @@ export default function SalesExpenses() {
                     <BaseButton text= "직원 추가" onClick={() => openModal("add")} className={classes.addButton} />
                 </div>
             </div>
-            <DefaultTable tableHeaders={tableHeaders} list={enrichedList} />
+            {loading ? (
+                <div>
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px", marginTop:"15px" }} />
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                    <div className={classes.skeleton} style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                </div>
+            ):(
+                <DefaultTable tableHeaders={tableHeaders} list={enrichedList} />
+            )}
         
             {isModalOpen && (
                 <ModalContainer
@@ -177,7 +185,7 @@ export default function SalesExpenses() {
                             closeModal();
                         }}
                         ref={employeeFormRef}
-                    />
+s                    />
                 </ModalContainer>
             )}
 
