@@ -1,37 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 집계사장
+소상공인/자영업자 통합 비즈니스 관리 플랫폼 및 BaaS 기반 임베디드 금융 서비스
 
-## Getting Started
+## 🦀 프로젝트 소개
+집계사장은 소상공인/자영업자의 직원 출퇴근 관리와 재무 관리를 돕는 클라우드 네이티브 애플리케이션입니다. 
 
-First, run the development server:
+## 🍔 프로젝트 배경
+소상공인/자영업자는
+- 직원 출퇴근 관리
+- 직원 급여 관리 및 급여 명세서 발송
+- 매/지출 관리 및 문서 작성
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+등의 업무에서 불편함을 겪고 있습니다. 
+집계사장은 이러한 불편함을 해소하고 쉽고 빠른 비즈니스 관리를 돕기 위해 개발되었습니다. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# MSA-FE
