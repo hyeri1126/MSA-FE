@@ -64,17 +64,17 @@
 
 ### 매·지출 내역 조회
 - 자체 구축한 코어 뱅킹을 통해 해당 사업장의 매·지출 내역 차트를 확인할 수 있습니다.
-![chart](/public/images/onboarding_img.png)
+![chart](public/images/onboarding_img.png)
 
 ### 원클릭 급여 명세서, 간펴 장부 발급
 - 한 번의 클릭만으로 가게의 해당 월 손익 계산서, 간편 장부를 발급받을 수 있습니다.
-![docs](/public/images/docs.png)
+![docs](public/images/docs.png)
 
 ### 직원 출·퇴근 관리
 - 카카오맵 API와 QR 코드를 활용하여 별도의 출·퇴근용 기기 설치 없이 폰으로 출·퇴근 기록이 가능합니다.
 - 가게별 직원을 등록하면 해당 직원에게 QR 코드가 발급되고 직원은 QR 코드를 통해 출·퇴근 시간을 기록합니다.
 - 사업장의 사장님은 직원의 출·퇴근 내역을 조회/수정/삭제할 수 있습니다. 
-![calendar](/public/images/calendar.png)
+![calendar](public/images/calendar.png)
 
 
 
@@ -82,10 +82,10 @@
 - 직원의 출·퇴근 기록을 바탕으로 직원의 급여를 자동으로 계산합니다.
 - Spring Batch를 활용하여 직원에게 급여를 자동 이체합니다.
 - 자동 이체 진행 시, 이에 대한 급여 명세서가 직원의 이메일로 자동으로 발송됩니다.
-![payslip](/public/images/payslip.png)
+![payslip](public/images/payslip.png)
 
 ## 📱 사용자 인터페이스 설계서
-📄[user_interface.pdf](/public/docs/user_interface.pdf) 
+📄[user_interface.pdf](public/docs/user_interface.pdf) 
 
 ## 👨‍💻 팀원 소개
 
