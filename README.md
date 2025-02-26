@@ -104,14 +104,14 @@
 | | | |
 |:---:|:---:|:---:|
 | <img src="https://github.com/jihyuk0414.png" width="120" /> | <img src="https://github.com/hyeri1126.png" width="120" /> |<img src="https://github.com/ksp0814.png" width="120" /> |
-| [임지혁](https://github.com/username) | [류혜리](https://github.com/hyeri1126) | [강세필](https://github.com/ksp0814) |
+| [임지혁](https://github.com/jihyuk0414) | [류혜리](https://github.com/hyeri1126) | [강세필](https://github.com/ksp0814) |
 | 팀장 | Frontend 팀장 | PM<br>Frontend 팀원<br>Backend 팀원 |
 | • MSA 통합통 구축<br>• 클로딩 간편장부, 급여왓세서 발급 구현<br>• ECS 통용 컨테이너 오케스트레이션<br>• CDC 구축<br>• 급여 자동 이체 프로세스 구현 | • Frontend 검포넌트 구조 설계<br>• JWT 활용 인증/인가(FrontEnd)<br> 사업장 등록 4단계 인증 프로세스 구현(Context API 활용) <br>  • 복잡한 인증 데이터 상태 관리 및 API 통신 최적화 | • 프로젝트 기획<br>• CORE BANKING 구축<br>• 외부 API 통신 |
 
 | | | |
 |:---:|:---:|:---:|
 | <img src="https://github.com/gusdk19.png" width="120" />  | <img src="https://github.com/my123dsa.png" width="120" />  |<img src="https://github.com/apple6346654.png" width="120" />  |
-| [이현아](https://github.com/username) | [박준혁](https://github.com/my123dsa) | [정성윤](https://github.com/apple6346654) |
+| [이현아](https://github.com/gusdk19) | [박준혁](https://github.com/my123dsa) | [정성윤](https://github.com/apple6346654) |
 | PM<br>Frontend 팀원<br>Backend 팀원 | Backend 팀장 | Frontend 팀원<br>Backend 팀원 |
 | • 서비스 기획<br>• 매/지출 그래프 시각화<br>• 급여 자동 이체<br>• 전반적인 UI/UX 설계 및 디자인 | • 사용자 인증/인가<br>• 급여 자동 이체 총괄<br>• 자동 급여명세서 발급<br>• BE CI/CD 파이프라인 구축 | • Core Bank 데이터센 구성 및 서버 구축<br>• 사용자 인증<br>• 사용자 정보 CRUD<br>• Cypress 테스트 총괄 |
 
