@@ -106,7 +106,7 @@
 | <img src="https://github.com/jihyuk0414.png" width="120" /> | <img src="https://github.com/hyeri1126.png" width="120" /> |<img src="https://github.com/ksp0814.png" width="120" /> |
 | [임지혁](https://github.com/username) | [류태리](https://github.com/hyeri1126) | [강세현](https://github.com/ksp0814) |
 | 팀장 | Frontend 팀장 | PM<br>Frontend 팀원<br>Backend 팀원 |
-| • MSA 통합통 구축<br>• 클로딩 간편장부, 급여왓세서 발급 구현<br>• ECS 통용 컨테이너 오케스트레이션<br>• CDC 구축<br>• 급여 자동 이체 프로세스 구현 | • Frontend 검포넌트 구조 설계<br>• JWT 활용 인증/인가(FrontEnd)<br>• UI/UX 총괄<br>• 사업장 등록 4단계 인증 프로세스 구현(Context API 활용)  • 복잡한 인증 데이터 상태 관리 및 API 통신 최적화 | • 프로젝트 기획<br>• CORE BANKING 구축<br>• 외부 API 통신 |
+| • MSA 통합통 구축<br>• 클로딩 간편장부, 급여왓세서 발급 구현<br>• ECS 통용 컨테이너 오케스트레이션<br>• CDC 구축<br>• 급여 자동 이체 프로세스 구현 | • Frontend 검포넌트 구조 설계<br>• JWT 활용 인증/인가(FrontEnd)<br>• UI/UX 총괄<br>• 사업장 등록 4단계 인증 프로세스 구현(Context API 활용) <br>  • 복잡한 인증 데이터 상태 관리 및 API 통신 최적화 | • 프로젝트 기획<br>• CORE BANKING 구축<br>• 외부 API 통신 |
 
 | | | |
 |:---:|:---:|:---:|
