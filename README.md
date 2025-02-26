@@ -55,6 +55,7 @@
 
 
 ## 🌟 주요 기능
+은행사 API를 바탕으로 코어 뱅킹을 자체적으로 구축하여, 이를 활용했습니다.
 
 ### 사업장 등록
 - 우리 은행을 사업자 계좌로 사용하는 사업장만 등록이 가능합니다.
@@ -62,29 +63,43 @@
 - 카카오맵 API를 활용하여 가게의 현재 위치를 입력 받게 됩니다.(위도, 경도)
 
 ### 매·지출 내역 조회
+- 자체 구축한 코어 뱅킹을 통해 해당 사업장의 매·지출 내역 차트를 확인할 수 있습니다.
+![chart](/public/images/onboarding_img.png)
+
+### 원클릭 급여 명세서, 간펴 장부 발급
+- 한 번의 클릭만으로 가게의 해당 월 손익 계산서, 간편 장부를 발급받을 수 있습니다.
+![docs](/public/images/docs.png)
+
+### 직원 출·퇴근 관리
+- 카카오맵 API와 QR 코드를 활용하여 별도의 출·퇴근용 기기 설치 없이 폰으로 출·퇴근 기록이 가능합니다.
+- 가게별 직원을 등록하면 해당 직원에게 QR 코드가 발급되고 직원은 QR 코드를 통해 출·퇴근 시간을 기록합니다.
+- 사업장의 사장님은 직원의 출·퇴근 내역을 조회/수정/삭제할 수 있습니다. 
+![calendar](/public/images/calendar.png)
 
 
 
+### 급여 계산 · 자동 이체
+- 직원의 출·퇴근 기록을 바탕으로 직원의 급여를 자동으로 계산합니다.
+- Spring Batch를 활용하여 직원에게 급여를 자동 이체합니다.
+- 자동 이체 진행 시, 이에 대한 급여 명세서가 직원의 이메일로 자동으로 발송됩니다.
+![payslip](/public/images/payslip.png)
 
-
-
-
-
-
+## 📱 사용자 인터페이스 설계서
+📄[user_interface.pdf](/public/docs/user_interface.pdf) 
 
 ## 👨‍💻 팀원 소개
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="public/images/profile-im.png" width="120" /> | <img src="public/images/profile-ryu.png" width="120" /> | <img src="public/images/profile-kang.png" width="120" /> |
-| [임지혁](https://github.com/username) | [류태리](https://github.com/hyeri1126) | [강세현](https://github.com/username) |
+| <img src="https://github.com/jihyuk0414.png" width="120" /> | <img src="https://github.com/hyeri1126.png" width="120" /> |<img src="https://github.com/ksp0814.png" width="120" /> |
+| [임지혁](https://github.com/username) | [류태리](https://github.com/hyeri1126) | [강세현](https://github.com/ksp0814) |
 | 팀장 | Frontend 팀장 | PM<br>Frontend 팀원<br>Backend 팀원 |
 | • MSA 통합통 구축<br>• 클로딩 간편장부, 급여왓세서 발급 구현<br>• ECS 통용 컨테이너 오케스트레이션<br>• CDC 구축<br>• 급여 자동 이체 프로세스 구현 | • Frontend 검포넌트 구조 설계<br>• JWT 활용 인증/인가(FrontEnd)<br>• UI/UX 총괄<br>• 농협 핵심 컨트롤러 페이지 구현 | • 프로젝트 기획<br>• CORE BANKING 구축<br>• 외부 API 통신 |
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="public/images/profile-lee.png" width="120" /> | <img src="public/images/profile-park.png" width="120" /> | <img src="public/images/profile-jung.png" width="120" /> |
-| [이현아](https://github.com/username) | [박준형](https://github.com/username) | [정성윤](https://github.com/username) |
+| <img src="https://github.com/gusdk19.png" width="120" />  | <img src="https://github.com/my123dsa.png" width="120" />  |<img src="https://github.com/apple6346654.png" width="120" />  |
+| [이현아](https://github.com/username) | [박준형](https://github.com/my123dsa) | [정성윤](https://github.com/apple6346654) |
 | PM<br>Frontend 팀원<br>Backend 팀원 | Backend 팀장 | Frontend 팀원<br>Backend 팀원 |
 | • 서비스 기획<br>• 매/지출 그래프 시각화<br>• 급여 자동 이체<br>• 사용자 인증 트랙 | • 사용자 인증/인가<br>• 급여 자동 이체 총괄<br>• 자동 급여명세서 발급<br>• BE CI/CD 파이프라인 구축 | • Core Bank 데이터센 구성 및 서버 구축<br>• 사용자 인증<br>• 사용자 정보 CRUD<br>• Cypress 테스트 총괄 |
 
